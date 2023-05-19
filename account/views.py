@@ -14,15 +14,15 @@ def createUser(request):
 
         username=res["username"]
         if len(username)<3:
-            return JsonResponse({'success':False,"reason":"Username is too short"},status=401)
+            return JsonResponse({'success':False,"reason":"Username is too short"},status=400)
         elif len(username)>32:
-            return JsonResponse({'success':False,"reason":"Username is too long"},status=401)
+            return JsonResponse({'success':False,"reason":"Username is too long"},status=400)
 
         password=res["password"]
         if len(password)<8:
-            return JsonResponse({'success':False,"reason":"password is too short"},status=401)
+            return JsonResponse({'success':False,"reason":"password is too short"},status=400)
         elif len(password)>32:
-            return JsonResponse({'success':False,"reason":"password is too long"},status=401)
+            return JsonResponse({'success':False,"reason":"password is too long"},status=400)
 
         uppercase=0
         lowercase=0
@@ -36,20 +36,20 @@ def createUser(request):
                 num+=1
 
         if uppercase<1:
-            return JsonResponse({'success':False,"reason":"password must have at least 1 uppercase letter"},status=401)
+            return JsonResponse({'success':False,"reason":"password must have at least 1 uppercase letter"},status=400)
 
         if lowercase<1:
-            return JsonResponse({'success':False,"reason":"password must have at least 1 lowercase letter"},status=401)
+            return JsonResponse({'success':False,"reason":"password must have at least 1 lowercase letter"},status=400)
 
         if num<1:
-            return JsonResponse({'success':False,"reason":"password must have at least 1 number"},status=401)
+            return JsonResponse({'success':False,"reason":"password must have at least 1 number"},status=400)
 
         account_list=account.objects.all()
         account_list=serializers.serialize("json", account_list)
         account_list = json.loads(account_list)
         for usr in account_list:
             if username==usr["fields"]["username"]:
-                return JsonResponse({'success':False,"reason":"Username already exists"},status=401)
+                return JsonResponse({'success':False,"reason":"Username already exists"},status=400)
 
         account.objects.create(username=username,password=password)
 
@@ -67,7 +67,7 @@ def verifyUser(request):
 
         username=res["username"]
         password=res["password"]
-        print(username,password)
+        # print(username,password)
 
         usr=account.objects.filter(username=username).first()
         if usr is None:
@@ -83,11 +83,11 @@ def verifyUser(request):
                 usr.unlock_time=None
                 usr.save()
 
-        a=account.objects.all()
-        a=serializers.serialize("json", a)
-        a=json.loads(a)
-        for i in a:
-            print(i)
+        # a=account.objects.all()
+        # a=serializers.serialize("json", a)
+        # a=json.loads(a)
+        # for i in a:
+        #     print(i)
 
         # usr=account.objects.filter(username=username,password=password).first()
         if usr.password==password:
