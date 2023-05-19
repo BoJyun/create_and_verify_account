@@ -27,7 +27,7 @@ $ docker run -d -p "$SERVER_IP_PORT":8000 bojyun/restful:1.1
 |401  |	Fail operation {"success":false,"reason":"password must have at least 1 uppercase letter, 1 lowercase letter and 1 number"} |
 
 
-## Verify Account
+## Verify Account and Password
 `POST` /account/api/user/auth
 ### Parameters
 |Name |Description|
