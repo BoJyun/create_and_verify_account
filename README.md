@@ -22,9 +22,9 @@ $ docker run -d -p "$SERVER_IP_PORT":8000 bojyun/restful:1.1
 |code |Description|
 |-----|--------|
 |200  |	successful operation {"success":true,"reason":"Account create success"} |
-|401  |	Fail operation {"success":false,"reason":"Username is too short or too long"} |
-|401  |	Fail operation {"success":false,"reason":"password is too short or too long"} |
-|401  |	Fail operation {"success":false,"reason":"password must have at least 1 uppercase letter, 1 lowercase letter and 1 number"} |
+|400  |	Fail operation {"success":false,"reason":"Username is too short or too long"} |
+|400  |	Fail operation {"success":false,"reason":"password is too short or too long"} |
+|400  |	Fail operation {"success":false,"reason":"password must have at least 1 uppercase letter, 1 lowercase letter and 1 number"} |
 
 
 ## Verify Account and Password
