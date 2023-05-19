@@ -19,7 +19,7 @@ def createUser(request):
             return JsonResponse({'success':False,"reason":"Username is too long"},status=401)
 
         password=res["password"]
-        if len(password)<3:
+        if len(password)<8:
             return JsonResponse({'success':False,"reason":"password is too short"},status=401)
         elif len(password)>32:
             return JsonResponse({'success':False,"reason":"password is too long"},status=401)
