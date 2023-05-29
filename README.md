@@ -6,7 +6,7 @@ $ docker pull bojyun/restful:1.1
 
 ### Execute inside docker container
 ```
-$ docker run -d -p "$SERVER_IP_PORT":8000 bojyun/restful:1.1
+$ docker run -d -p "$SERVER_IP":8000 bojyun/restful:1.1
 ```
 
 #  API document
